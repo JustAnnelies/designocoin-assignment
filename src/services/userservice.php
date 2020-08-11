@@ -98,8 +98,8 @@ class UserService
         // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
         // This will make sure that parameter values are quoted.
         $preparedStatement = $connection->prepare(
-            'INSERT INTO users (firstname, lastname, email, password)
-            VALUES (:firstname, :lastname, :email, :password)'
+            'INSERT INTO users (firstname, lastname, email, password, balance)
+            VALUES (:firstname, :lastname, :email, :password, 0)'
         );
 
         // Execute query
@@ -111,6 +111,8 @@ class UserService
                 'password' => $user->getPassword(),
             ]
         );
+
+        return $connection->lastInsertId();
     }
 
     public function updateUserBalance($userId, $amount)
