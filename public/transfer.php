@@ -8,6 +8,9 @@ require_once(__DIR__ . "/../src/services/userservice.php");
 // Creating new instance of the UserService class
 $userService = new UserService();
 
+// Call the public getLoggedInUser function
+$loggedInUser = $userService->getLoggedInUser();
+
 // Call the public getUsers function
 $users = $userService->getUsers();
 
@@ -20,5 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transactionService = new TransactionService();
 
     // Call the public storeTransfer function
-    $transactionService->storeTransaction($_POST);
+    $transactionService->storeTransaction($loggedInUser, $_POST);
+
+    // Call the public updateBalance function for the payer
+    $userService->updateUserBalance($loggedInUser['id'], -$_POST['amount']);
+
+    // Call the public updateBalance function for the receiver
+    $userService->updateUserBalance($_POST['receiver'], $_POST['amount']);
 }

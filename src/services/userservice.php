@@ -46,6 +46,30 @@ class UserService
         // Delete session
     }
 
+    public function getLoggedInUser()
+    {
+        $email = $_SESSION['email'];
+
+        // Connect with database
+        $connection = $this->getDatabaseConnection();
+
+        // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
+        // This will make sure that parameter values are quoted.
+        $preparedStatement = $connection->prepare(
+            'SELECT * FROM users WHERE email = :email LIMIT 1'
+        );
+
+        // Execute query
+        $preparedStatement->execute(
+            [
+                'email' => $email,
+            ]
+        );
+
+        // Get SQL result
+        return $preparedStatement->fetch(Pdo::FETCH_ASSOC);
+    }
+
     public function getUsers()
     {
         // Connect with database
@@ -85,6 +109,26 @@ class UserService
                 'lastname' => $user->getLastName(),
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword(),
+            ]
+        );
+    }
+
+    public function updateUserBalance($userId, $amount)
+    {
+        // Connect with database
+        $connection = $this->getDatabaseConnection();
+
+        // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
+        // This will make sure that parameter values are quoted.
+        $preparedStatement = $connection->prepare(
+            'UPDATE users SET balance = balance + :balance WHERE id = :user_id'
+        );
+
+        // Execute query
+        $preparedStatement->execute(
+            [
+                'balance' => $amount,
+                'user_id' => $userId,
             ]
         );
     }
