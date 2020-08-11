@@ -28,7 +28,6 @@
         <th>Sender</th>
         <th>Receiver</th>
         <th>Amount</th>
-        <th>Description</th>
     </tr>
 
     <?php
@@ -38,7 +37,6 @@
                 <td>' . $transaction['sender'] . '</td>
                 <td>' . $transaction['receiver'] . '</td>
                 <td>' . $transaction['amount'] . '</td>
-                <td>' . $transaction['description'] . '</td>
             </tr>';
         }
     ?>

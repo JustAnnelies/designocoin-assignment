@@ -17,8 +17,7 @@ class TransactionService
                 t.created_at as `date`,
                 up.firstname as `sender`,
                 ur.firstname as `receiver`,
-                t.amount,
-                t.description
+                t.amount
             FROM 
                 transactions t
             INNER JOIN
