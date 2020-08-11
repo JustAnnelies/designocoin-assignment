@@ -28,6 +28,7 @@
         <th>Sender</th>
         <th>Receiver</th>
         <th>Amount</th>
+        <th>Actions</th>
     </tr>
 
     <?php
@@ -37,6 +38,7 @@
                 <td>' . $transaction['sender'] . '</td>
                 <td>' . $transaction['receiver'] . '</td>
                 <td>' . $transaction['amount'] . '</td>
+                <td><a href="/transaction.php?id=' . $transaction['id'] . '">Detail</a></td>
             </tr>';
         }
     ?>
