@@ -5,10 +5,8 @@ require_once(__DIR__ . "/../models/transaction.php");
 
 class TransactionService
 {
-    public function storeTransaction(array $data)
+    public function storeTransaction($payer, array $data)
     {
-        $payer = $this->getLoggedInUser();
-
         $this->doesPayerHaveSufficientFunds($payer, $data['amount']);
 
         // Create instance of Transaction
@@ -46,30 +44,6 @@ class TransactionService
         if ($payerBalance < $amount) {
             throw new Exception('The payer does not have sufficient funds for a transfer of ' . $amount);
         }
-    }
-
-    private function getLoggedInUser()
-    {
-        $email = $_SESSION['email'];
-
-        // Connect with database
-        $connection = $this->getDatabaseConnection();
-
-        // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
-        // This will make sure that parameter values are quoted.
-        $preparedStatement = $connection->prepare(
-            'SELECT * FROM users WHERE email = :email LIMIT 1'
-        );
-
-        // Execute query
-        $preparedStatement->execute(
-            [
-                'email' => $email,
-            ]
-        );
-
-        // Get SQL result
-        return $preparedStatement->fetch(Pdo::FETCH_ASSOC);
     }
 
     private function getDatabaseConnection()
