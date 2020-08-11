@@ -8,5 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userService = new UserService();
 
     // Call the public storeUser function
-    $userService->storeUser($_POST);
+    $userId = $userService->storeUser($_POST);
+
+    // Call the public updateBalance function for the new user
+    $signupGift = 10;
+    $userService->updateUserBalance($userId, $signupGift);
 }
