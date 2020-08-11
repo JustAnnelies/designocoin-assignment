@@ -46,6 +46,22 @@ class UserService
         // Delete session
     }
 
+    public function getUsers()
+    {
+        // Connect with database
+        $connection = $this->getDatabaseConnection();
+
+        // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
+        // This will make sure that parameter values are quoted.
+        $preparedStatement = $connection->prepare('SELECT * FROM users');
+
+        // Execute query
+        $preparedStatement->execute();
+
+        // Get SQL result
+        return $preparedStatement->fetchAll(Pdo::FETCH_ASSOC);
+    }
+
     public function storeUser(array $data)
     {
         // Create instance of User
