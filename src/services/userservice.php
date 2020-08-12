@@ -5,12 +5,8 @@ require_once(__DIR__ . "/../models/user.php");
 
 class UserService
 {
-    public function login(array $data)
+    public function login($email, $password)
     {
-        // Get input data
-        $email = $data['email'];
-        $password = $data['password'];
-
         // Connect with database
         $connection = $this->getDatabaseConnection();
 
@@ -86,11 +82,11 @@ class UserService
         return $preparedStatement->fetchAll(Pdo::FETCH_ASSOC);
     }
 
-    public function storeUser(array $data)
+    public function storeUser($firstName, $lastName, $email, $password)
     {
         // Create instance of User
         // This will only create the instance if the given data is valid
-        $user = new User($data['firstname'], $data['lastname'], $data['email'], $data['password']);
+        $user = new User($firstName, $lastName, $email, $password);
 
         // Connect with database
         $connection = $this->getDatabaseConnection();
