@@ -15,4 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Call the public login function
     $userService->login($email, $password);
+
+    // Redirect to transactions page
+    header('Location: transactions.php');
 }

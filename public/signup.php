@@ -19,4 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Call the public updateBalance function for the new user
     $signupGift = 10;
     $userService->updateUserBalance($userId, $signupGift);
+
+    // Redirect to login page
+    header('Location: login.php');
 }
