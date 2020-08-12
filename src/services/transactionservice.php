@@ -85,13 +85,13 @@ class TransactionService
         return $preparedStatement->fetchAll(Pdo::FETCH_ASSOC);
     }
 
-    public function storeTransaction($payer, array $data)
+    public function storeTransaction($payer, $userIdReceiver, $amount, $description)
     {
-        $this->doesPayerHaveSufficientFunds($payer, $data['amount']);
+        $this->doesPayerHaveSufficientFunds($payer, $amount);
 
         // Create instance of Transaction
         // This will only create the instance if the given data is valid
-        $transaction = new Transaction($payer['id'], $data['receiver'], $data['amount'], $data['description']);
+        $transaction = new Transaction($payer['id'], $userIdReceiver, $amount, $description);
 
         // Connect with database
         $connection = $this->getDatabaseConnection();
