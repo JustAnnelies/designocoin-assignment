@@ -39,7 +39,24 @@ class UserService
 
     public function logout()
     {
-        // Delete session
+        // Unset all of the session variables
+        $_SESSION = [];
+
+        // Delete session cookie
+        $cookieParams = session_get_cookie_params();
+
+        setcookie(
+            session_name(),
+            '',
+            time() - 42000,
+            $cookieParams['path'],
+            $cookieParams['domain'],
+            $cookieParams['secure'],
+            $cookieParams['httponly']
+        );
+
+        // Destroy the session
+        session_destroy();
     }
 
     public function getLoggedInUser()
