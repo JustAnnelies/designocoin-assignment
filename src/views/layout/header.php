@@ -35,5 +35,3 @@
             display: inline-block;
         }
     </style>
-</head>
-<body>
