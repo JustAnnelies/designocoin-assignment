@@ -4,11 +4,11 @@ class DatabaseService
 {
     public function connect()
     {
-        $host = 'mysql-database';
+        $host = 'localhost';
         $dbName = 'designocoin';
-        $port = 3306;
+        $port = 8888;
         $dbUsername = 'root';
-        $dbPassword = 'password';
+        $dbPassword = 'root';
 
         // PDO provides a data-access abstraction layer, which means that, regardless of which database you're using,
         // you use the same functions to issue queries and fetch data.
