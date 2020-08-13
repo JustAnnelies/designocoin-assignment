@@ -35,4 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Call the public updateBalance function for the receiver
     $userService->updateUserBalance($_POST['receiver'], $_POST['amount']);
+
+     // Redirect to transactions page
+     header('Location: transactions.php');
 }
