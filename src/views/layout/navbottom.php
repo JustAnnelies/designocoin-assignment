@@ -17,6 +17,8 @@
 }
 </style>
 <body>
+    <br>
+    <br>
     <div class="nav-bottom">
     <a href="transfer.php">Transfer</a>
     &nbsp;
