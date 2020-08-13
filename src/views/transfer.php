@@ -10,6 +10,10 @@
 
 <br class="space">
 
+<?php include_once(__DIR__ . "/layout/balance.php"); ?>
+
+<br class="space">
+
 <?php if(isset($error)): ?>
     <div class="error" style="color: red;">
         <?php echo $error; ?>

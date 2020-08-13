@@ -99,6 +99,26 @@ class UserService
         return $preparedStatement->fetchAll(Pdo::FETCH_ASSOC);
     }
 
+    public function getUserBalance($userId)
+    {
+        // Connect with database
+        $connection = $this->getDatabaseConnection();
+
+        // Prepare query & protect against SQL injection, because we're binding parameters to the statement.
+        // This will make sure that parameter values are quoted.
+        $preparedStatement = $connection->prepare('SELECT balance FROM users WHERE id = :userId');
+
+        // Execute query
+        $preparedStatement->execute(
+            [
+                'userId' => $userId,
+            ]
+        );
+
+        // Get SQL result
+        return $preparedStatement->fetch(Pdo::FETCH_ASSOC);
+    }
+
     public function storeUser($firstName, $lastName, $email, $password)
     {
         // Create instance of User
