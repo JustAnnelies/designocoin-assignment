@@ -1,5 +1,6 @@
 <?php
     include_once( __DIR__ . "/layout/header.php");
+    include_once(__DIR__ . "/layout/transactions-layout.php")
 ?>
 
 <div>
@@ -22,7 +23,7 @@
     </div>
 <?php endif; ?>
 
-<table>
+<table class="transactions-table">
     <tr>
         <th>Date</th>
         <th>Sender</th>
