@@ -1,6 +1,6 @@
 <?php
     include_once( __DIR__ . "/layout/header.php");
-    include_once(__DIR__ . "/layout/transactions-layout.php")
+    include_once(__DIR__ . "/layout/transactions-layout.php");
 ?>
 
 <div>
@@ -8,6 +8,10 @@
 </div>
 
 <div class="img"></div>
+
+<br class="space">
+
+<?php include_once(__DIR__ . "/layout/balance.php");?>
 
 <br class="space">
 

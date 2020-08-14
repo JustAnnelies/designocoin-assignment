@@ -55,5 +55,7 @@
         <input type="submit" value="Sign up">
     </div>
 </form>
+<br>
+<br>
 
 <?php include_once( __DIR__ . "/layout/footer.php");
