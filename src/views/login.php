@@ -29,5 +29,7 @@
         <input type="submit" value="Login">
     </div>
 </form>
+<br>
+<br>
 
 <?php include_once( __DIR__ . "/layout/footer.php");
