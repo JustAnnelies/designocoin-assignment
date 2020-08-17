@@ -29,7 +29,11 @@ class UserService
 
         // Check if inputted password matches the one in the database
         $isCorrectPassword = password_verify($password, $hashedPassword);
-
+        
+        if (!$isCorrectPassword) {
+            throw new Exception("Incorrect login credentials");
+        }
+        
         // Store email in session
         // The default behaviour of the session cookie is that it will expire when the browser is closed.
         if ($isCorrectPassword) {
