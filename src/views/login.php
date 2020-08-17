@@ -10,6 +10,14 @@
 
 <br class="space">
 
+<?php if(isset($error)): ?>
+    <div class="error" style="color: red;">
+        <?php echo $error; ?>
+        <br>
+        <br>
+    </div>
+<?php endif; ?>
+
 <form action="/login.php" method="post">
     <div>
         <label for="email">Email</label>
